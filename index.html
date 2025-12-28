@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta charset="UTF-8">
+   <title>Entreprise de construction</title>
+
+   <style>
+      /*reset*/
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      body {
+         font-family: Arial, sans-serif;
+         color: #333;
+         line-height: 1.6;
+      }
+
+      /* header*/
+      header {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 20px 50px;
+         background-color: #1c1c1c;
+         color: white;
+      }
+
+      nav a {
+         color: white;
+         margin-left: 25px;
+         text-decoration: none;
+         font-weight: bold;
+      }
+
+      nav a:hover {
+         color: #f9a825;
+      }
+
+      /*hero*/
+      .hero {
+         background-color: #f5f5f5;
+         padding: 100px 20px;
+         text-align: center;
+      }
+
+      .hero h2 {
+         font-size: 38px;
+         margin-bottom: 20px;
+      }
+
+      .hero p {
+         font-size: 18px;
+         margin-bottom: 30px;
+      }
+
+      .hero button {
+         padding: 12px 25px;
+         background-color: #f9a825;
+         color: white;
+         border: none;
+         font-size: 16px;
+         cursor: pointer;
+         border-radius: 5px;
+         font-weight: bold;
+      }
+
+      .hero button:hover {
+         background-color: #c17900;
+      }
+
+      /*services*/
+      #services {
+         padding: 70px 50px;
+      }
+
+      #services h2 {
+         text-align: center;
+         margin-bottom: 40px;
+      }
+
+      .services-container {
+         display: flex;
+         gap: 20px;
+      }
+
+      .service {
+         background-color: #eeeeee;
+         padding: 30px;
+         border-radius: 8px;
+         text-align: center;
+         transition: transform 0.3s ease;
+      }
+
+      .service:hover {
+         background-color: #ddd;
+         transform: translateY(-5px);
+      }
+
+      /*projects*/
+      #projects {
+         padding: 60px;
+         background-color: #f9f9f9;
+         text-align: center;
+      }
+
+      /*contact */
+      #contact {
+         padding: 60px;
+         text-align: center;
+      }
+
+      /*footer*/
+      footer {
+         background-color: #1c1c1c;
+         color: white;
+         text-align: center;
+         padding: 20px;
+         margin-top: 40px;
+      }
+
+      /*responsive mobile*/
+      @media(max-width: 768px) {
+
+         header {
+            flex-direction: column;
+            text-align: center;
+         }
+
+         nav {
+            margin-top: 15px;
+         }
+
+         nav a {
+            display: block;
+            margin: 10px 0;
+         }
+
+         .hero h2 {
+            font-size: 26px;
+         }
+
+         .services-container {
+            flex-direction: column;
+         }
+
+         .service {
+            margin-bottom: 20px;
+         }
+
+         #services,
+         #projects,
+         #contact {
+            padding: 40px 20px;
+         }
+      }
+
+      #why {
+         padding: 60px;
+         background-color: #f5f5f5;
+         text-align: center;
+      }
+   </style>
+</head>
+
+<body>
+
+<header>
+   <h1>BuildPro</h1>
+   <nav>
+      <a href="#home">Accueil</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projets</a>
+      <a href="#contact">Contact</a>
+   </nav>
+</header>
+
+<section id="home" class="hero">
+   <h2>Construire l'avenir avec confiance</h2>
+   <p>Entreprise spécialisée en construction et rénovation.</p>
+   <p>Qualité • Sécurité • Fiabilité</p>
+   <button>Demander un devis</button>
+</section>
+
+<section id="services">
+   <h2>Nos Services</h2>
+   <div class="services-container">
+      <div class="service">
+         <h3>Construction</h3>
+         <p>Bâtiments résidentiels et commerciaux.</p>
+      </div>
+      <div class="service">
+         <h3>Rénovation</h3>
+         <p>Modernisation et amélioration de vos espaces.</p>
+      </div>
+      <div class="service">
+         <h3>Travaux Publics</h3>
+         <p>Routes, infrastructures et aménagements.</p>
+      </div>
+   </div>
+</section>
+
+<section id="contact">
+   <h2>Contact</h2>
+   <p>Email : contact@buildpro.com</p>
+   <p>Téléphone : +33 6 00 00 00 00</p>
+</section>
+
+<section id="why">
+   <h2>Pourquoi nous choisir</h2>
+   <p>✔ Plus de 10 ans d'expérience</p>
+   <p>✔ Équipe qualifiée</p>
+   <p>✔ Respect des délais</p>
+</section>
+
+<footer>
+   <p>© 2025 BuildPro Construction</p>
+</footer>
+</body>
+</html>
