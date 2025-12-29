@@ -1,222 +1,279 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-   <meta charset="UTF-8">
-   <title>Entreprise de construction</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Projet Final - lecon 1 a 20</title>
 
-   <style>
-      /*reset*/
-      * {
-         margin: 0;
-         padding: 0;
-         box-sizing: border-box;
-      }
+   <!-- Google Font (Leçon 10) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-      body {
-         font-family: Arial, sans-serif;
-         color: #333;
-         line-height: 1.6;
-      }
+    <style>
+        /* Reset & variables */
+        *{box-sizing:border-box;margin:0;padding:0}
+        :root{
+            --accent:#0077ff; --muted:#666; --bg:#f7f8fb; --card:#ffffff;
+        }
+        body{font-family:"poppins";sans-serif;background: var(--bg);color:#222;line-height: 1.4;}
+        a{color:var(--accent);text-decoration: none;}
 
-      /* header*/
-      header {
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         padding: 20px 50px;
-         background-color: #1c1c1c;
-         color: white;
-      }
+        /* NAV (Leçon 14 - Flexbox) */
+        nav{display:flex;justify-content:space-between;align-items: center;padding: 18px 28px;background:#0d47a1;color: white;}
+        nav .logo{font-weight:700}
+        nav ul{display: flex;gap: 18px;list-style: none;}
+        nav a{color: white}
 
-      nav a {
-         color: white;
-         margin-left: 25px;
-         text-decoration: none;
-         font-weight: bold;
-      }
+        /* HEADER (Leçon 1,8) */
+        header{padding:60px 20px;text-align:center;background: linear-gradient(90deg,var(--accent),#005fcc);color: white;}
+        header h1{font-size:2rem;margin-bottom:8px;}
+        header p{opacity:.9}
 
-      nav a:hover {
-         color: #f9a825;
-      }
+        /* LAYOUT: Grid container (Leçon 15) */
+        .container{max-width:1200px;margin:30px auto;padding:0 16px;display:grid;grid-template-columns:1fr 320px;gap:24px}
 
-      /*hero*/
-      .hero {
-         background-color: #f5f5f5;
-         padding: 100px 20px;
-         text-align: center;
-      }
+        /* MAIN content */
+        main{background:linear-gradient(180deg,transparent,transparent)}
 
-      .hero h2 {
-         font-size: 38px;
-         margin-bottom: 20px;
-      }
+        /* ABOUT (HTML content, lists - Leçon 2/3/4) */
+        .about{background: var(--card);padding:20px;border-radius: 12px;box-shadow: 0 6px 18px rgba(18,38,63,.06)}
+        .about h2{margin-bottom:10px}
+        .about ul{margin-left:18px;margin:8px}
 
-      .hero p {
-         font-size: 18px;
-         margin-bottom: 30px;
-      }
+        /* SKILLS cards (Flexbox + Box-model - Leçon 11/14) */
+        .skills{display: flex;flex-wrap: wrap;gap: 12px;margin-top: 12px}
+        .skill{background: var(--card);padding: 12px 14px;border-radius:10px;border: 2px solid transparent;box-shadow: 0 6px 12px rgba(2,6,23,.04);flex:1 1 140px;text-align:center;transition:transform .25s,box-shadow .25s}
+        .skill:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(2,6,23,.08);border-color:var(--accent)}
 
-      .hero button {
-         padding: 12px 25px;
-         background-color: #f9a825;
-         color: white;
-         border: none;
-         font-size: 16px;
-         cursor: pointer;
-         border-radius: 5px;
-         font-weight: bold;
-      }
+        /* PORTFOLIO (Grid - Leçon 15) */
+        .portfolio{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220ox,1fr));gap:18px}
+        .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 16px rgba(10,20,40,.06);display:flex;flex-direction:column;gap:10px;transition:transform .3s}
+        .card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+        .card:hover{transform:translateY(-8px)}
 
-      .hero button:hover {
-         background-color: #c17900;
-      }
+        /* FLIP QUIZ (Leçon 20 part1) */
+        .flip-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:18px}
+        .flip{perspective:1000px;width:300px;height:200px}
+        .flip .inner{width:100%;heigth:100%;position:relative;transform-style:preserve-3d;transition:transform .7s}
+        .flip:hover .inner{transform:rotateY(180deg)}
+        .face{position:absolute;inset:0;border-radius:12px;display:flex;align-items:cneter;justify-content:center;padding:16px;backface-visibility:hidden;box-shadow:0 10px020px rgba(2,6,23,.08)}
+        .face.front{background:linear-gradient(180deg,#fff,#f6f9ff);font-weight:600}
+        .face.back{background:var(--accent);color:white;transform:rotateY(180deg)}
 
-      /*services*/
-      #services {
-         padding: 70px 50px;
-      }
+        /* ANIMATIONS CASCADE (Leçon 18) */
+        .cascade{display:flex;gap:12px;justify-content:center;margin-top:20px}
+        .pop{width:110px;height:110px;background:white;border-radius:12px;box-shadow:0 8px 20px rgba(2,6,23,.06);display:flex;align-items: center;justify-content:center;opacity:0;transform:scale(.6);animation:spin 6s linear infinite;transform-style:preserve-3d}
+        .pop:nth-child(1){animation-delay:.2} .pop:nth-child(2){animation-delay:.4s}.pop:nth-child(3){animation-delay:.6s}
+        @keyframes pop{to{opacity:1;transform: scale(1)}}
 
-      #services h2 {
-         text-align: center;
-         margin-bottom: 40px;
-      }
+        /* 3D continuous box (Leçon 20 part2) */
+        .spin-box{width:150px;height:150px;border-radius:12px;background:var(--card);display: flex;align-items:center;justify-content:center;margin:20px auto;box-shadow:0 10px 25px rgba(2,6,23,.06);animation:spin 6s linear infinite;transform-style: preserve-3d}
+        @keyframes spin{to{transform: rotateX(360deg) rotateY(360deg)}}
 
-      .services-container {
-         display: flex;
-         gap: 20px;
-      }
+        /* CUBE simple (Leçon 20 part3) */
+        .cube-wrap{perspective:900px;display:flex;justify-content: center;margin-top: 24px}
+        .cube{width:120px;height:120px;position:relative;transform-style:preserve-3d;animation:cube 6s linear infinite}
+        .cube .f{position:absolute;width:120px;height:120px;background:var(--card);display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid rgb(2,6,23,.05)}
+        .cube .front{transform:translateZ(60px)}.cube .back{transform:rotateY(180deg) translateZ(60px)}.cube .right{transform:rotateY(90deg) translateZ(60px)}.cube .left{transform:rotateY(-90deg) translateZ(60px)}.cube .top{transform:rotateX(90deg) translateZ(60px)}.cube .bottom{transform:rotateX(-90deg) translateZ(60px)}
+        @keyframes cube{to{transform:rotateX(360deg) rotateY(360deg)}}
 
-      .service {
-         background-color: #eeeeee;
-         padding: 30px;
-         border-radius: 8px;
-         text-align: center;
-         transition: transform 0.3s ease;
-      }
+        /* CUBE simple (Leçon 20 part3) */
+        .cube-wrap{perspective:900px;display:flex;justify-content:center;margin-top:24px}
+        .cube{width:120px;height:120px;position:relative;transform-style:preserve-3d;animation: cube 6s linear infinite}
+        .cube .f{position:absolute;width:120px;height:120px;background:var(--card);display: flex;align-items:center;justify-content:center;justify-content:center;border-radius:8px;border:1px solid rgba(2,6,23,.05)}
+        .cube .front{transform:translateZ(60px)}.cube .back{transform:rotateY(180deg) translateZ(60px)}.cube .right{transform:rotateY(90deg) translateZ(60px)}.cube .left{transform:rotateY(-90deg) translateZ(60px)}.cube .top{transform:rotateX(90deg) translateZ(60px)}.cube .bottom{transform:rotateX(-90deg) translateZ(60px)}
+        @keyframes cube{to{transform:rotateX(360deg) rotateY(360deg)}}
 
-      .service:hover {
-         background-color: #ddd;
-         transform: translateY(-5px);
-      }
+        /* CONTACT form (Leçon 7 forms, validation simple) */
+        aside .contact{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,.05)}
+        .contact label{display:block;margin-top:10px;font-size:.9rem;color:var(--muted)}
+        .contact input,.contact textarea{width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid #e6e9ef}
+        .contact button{margin-top:12px;padding:10px 14px;background:var(--accent);color:white;border:none;border-radius:8px;cursor: pointer}
 
-      /*projects*/
-      #projects {
-         padding: 60px;
-         background-color: #f9f9f9;
-         text-align: center;
-      }
+       /* Footer */
+       footer{margin-top:30px;padding:24px;text-align:center;color:var(--muted)}
+    
+       /* Responsive (Leçon 17) */
+       @media (max-width:1000px){.container{grid-template-columns:1fr}.portfolio{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}}
+       @media (max-width:480px){nav ul{display:none}header h1{font-size:1.4rem}.flip{width:100%;height:auto}.flip .inner{min-height:180px}}
 
-      /*contact */
-      #contact {
-         padding: 60px;
-         text-align: center;
-      }
-
-      /*footer*/
-      footer {
-         background-color: #1c1c1c;
-         color: white;
-         text-align: center;
-         padding: 20px;
-         margin-top: 40px;
-      }
-
-      /*responsive mobile*/
-      @media(max-width: 768px) {
-
-         header {
-            flex-direction: column;
-            text-align: center;
-         }
-
-         nav {
-            margin-top: 15px;
-         }
-
-         nav a {
-            display: block;
-            margin: 10px 0;
-         }
-
-         .hero h2 {
-            font-size: 26px;
-         }
-
-         .services-container {
-            flex-direction: column;
-         }
-
-         .service {
-            margin-bottom: 20px;
-         }
-
-         #services,
-         #projects,
-         #contact {
-            padding: 40px 20px;
-         }
-      }
-
-      #why {
-         padding: 60px;
-         background-color: #f5f5f5;
-         text-align: center;
-      }
-   </style>
+       /* small helpers */
+       .muted{color:var(--muted);font-size:.95rem}
+       .center{text-align:center}
+    </style>
 </head>
-
 <body>
 
-<header>
-   <h1>BuildPro</h1>
-   <nav>
-      <a href="#home">Accueil</a>
-      <a href="#services">Services</a>
-      <a href="#projects">Projets</a>
-      <a href="#contact">Contact</a>
-   </nav>
-</header>
+   <!-- NAV (Flexbox) -->
+    <nav>
+        <div class="logo">SALMAN ZAHA - Portfolio</div>
+        <ul>
+            <li><a href="#about">A propos</a></li>
+            <li><a href="#work">Projets</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav> 
 
-<section id="home" class="hero">
-   <h2>Construire l'avenir avec confiance</h2>
-   <p>Entreprise spécialisée en construction et rénovation.</p>
-   <p>Qualité • Sécurité • Fiabilité</p>
-   <button>Demander un devis</button>
-</section>
+    <!-- HEADER -->
+     <header>
+        <h1>projet final</h1>
+        <p>Un mini-site démonstratif qui réunit Html, Css, Flexbox, Grid, Animation et 3D.</p>
+     </header>
+    <div class="container">
+        <main>
 
-<section id="services">
-   <h2>Nos Services</h2>
-   <div class="services-container">
-      <div class="service">
-         <h3>Construction</h3>
-         <p>Bâtiments résidentiels et commerciaux.</p>
-      </div>
-      <div class="service">
-         <h3>Rénovation</h3>
-         <p>Modernisation et amélioration de vos espaces.</p>
-      </div>
-      <div class="service">
-         <h3>Travaux Publics</h3>
-         <p>Routes, infrastructures et aménagements.</p>
-      </div>
-   </div>
-</section>
+           <!-- ABOUT (lists, titles) -->
+            <section id="about" class="about">
+                <h2>A propos</h2>
+                <p class="muted">Ce site montre des exemples de chaque leçon : structure Html, listes, images, liens, formulaires, CSS et plus.</p>
+                <h3>Mes loisirs</h3>
+                <ul>
+                    <li>Programmation (Html/CSS/JS)</li>
+                    <li>Design UI</li>
+                    <li>Lecture</li>
+                </ul>
 
-<section id="contact">
-   <h2>Contact</h2>
-   <p>Email : contact@buildpro.com</p>
-   <p>Téléphone : +33 6 00 00 00 00</p>
-</section>
+                <h3>Objectifs</h3>
+                <ol>
+                    <li>Apprendre les fondamtaux</li>
+                    <li>Réaliser des projets</li>
+                    <li>Postuler / Freelance</li>
+                </ol>
 
-<section id="why">
-   <h2>Pourquoi nous choisir</h2>
-   <p>✔ Plus de 10 ans d'expérience</p>
-   <p>✔ Équipe qualifiée</p>
-   <p>✔ Respect des délais</p>
-</section>
+                <div class="skills">
+                <div class="skill">HTML</div>
+                <div class="skill">CSS</div>
+                <div class="skill">Flexbox</div>
+                <div class="skill">Grid</div>
+              </div>
+        </section>
 
-<footer>
-   <p>© 2025 BuildPro Construction</p>
-</footer>
+            <!-- PORTFOLIO (Grid) -->
+             <section id="work">
+                <h2 class="center" style="margin-top:18px">Projets & competences</h2>
+                <div class="portfolio">
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/p1/600/400" alt="Projet 1">
+                        <h4>Mini-portfolio</h4>
+                        <p class="muted">Flexbox + Grid + Animations.</p>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/p2/600/400" alt="Projet 2">
+                        <h4>Galerie responsive</h4>
+                        <p class="muted">Grid auto-fit & media queries.</p>
+                    </article>
+
+                    <article class="card">
+                       <img src="https://picsum.photos/seed/p3/600/400" alt="Projet 3">
+                        <h4>Carte quiz 3D</h4>
+                        <p class="muted">Flip card, backface-visibility.</p>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/p4/600/400" alt="Projet 4">
+                        <h4>Animation avancees</h4>
+                        <p class="muted">Transtions, keyframes, easing.</p>
+                    </article>
+                </div>
+
+                <!-- small animations showcases -->
+                 <div class="center" style="margin-top:18px">
+                    <div class="cascade">
+                        <div class="pop">A</div>
+                        <div class="pop">B</div>
+                        <div class="pop">C</div>
+                    </div>
+                 </div>
+             </section>
+
+             <!-- QUIZ (Flip cards - Leçon 20) -->
+              <section id="quiz" style="margin-top:26px">
+                <h2 class="center">Quiz rapide (survol pour voir la réponse)</h2>
+                <div class="flip-row">
+                 <div class="flip">
+                 <div class="inner">
+                    <div class="face front">Question 1:<br>Quel langage sert à structurer une page web ?</div>
+                    <div class="face back">HTML</div>
+                </div>
+                </div>
+
+                <div class="flip">
+                    <div class="inner">
+                        <div class="face front">Question 2:<br> Quelle propriété place un élément en Flexbox ?</div>
+                        <div class="face back">display: flex</div>
+                    </div>
+                </div>
+
+                <div class="flip">
+                    <div class="inner">
+                        <div class="face front">Question 3:<br> Quelle propriété crée une grille ?</div>
+                        <div class="face back">display: grid</div>
+                    </div>
+                </div>
+                </div>
+              </section>
+
+              <!-- 3D examples -->
+              <section style="margin-top:28px">
+                <h2 class="center">Exemples 3D</h2>
+                <div class="center">
+                    <div class="spin-box">3D</div>
+                </div>
+                <div class="cube-wrap">
+                    <div class="cube">
+                        <div class="f front">1</div>
+                        <div class="f back">2</div>
+                        <div class="f right">3</div>
+                        <div class="f left">4</div>
+                        <div class="f top">5</div>
+                        <div class="f bottom">6</div>
+                    </div>
+                </div>
+              </section>
+        </main>
+
+        <!-- ASIDE (Contact + Table example - Leçon 6 & 5) -->
+         <aside>
+            <div class="contact">
+                <h3>Contact</h3>
+                <form onsubmit="return handleSubmit(event)">
+                    <label for="name">Nom</label>
+                    <input id="name" name="name" required placeholder="Ton nom">
+
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" required placeholder="email@exemple.com">
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Écris ton message..."></textarea>
+
+                    <button type="submit">Envoyer</button>
+                </form>
+
+                <h4 style="margin-top:14px">Petite table</h4>
+                <table style="width:100%;border-collapse:collapse;margin-top:8px">
+                    <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Nom</th><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Âge</th></tr>
+                   <tr><td style="padding:8px">Salman</td><td style="padding:8px">25</td></tr>
+                   <tr><td style="padding:8px">rayan</td><td style="padding:8px">22</td></tr>
+                </table>
+            </div>
+         </aside>
+    </div>
+
+
+ <footer>
+    © 2025 - projet final
+ </footer>
+
+ <script>
+    // Simple form handler (no backend) — demonstrates JS interaction //
+     function handleSubmit(e){
+        e.preventDefault();
+        const name = document.getElementById('name').value || 'inconnu';
+        alert('Merci ' + name + ' ! (formulaire simule - sans envoi réel)');
+        e.target.reset();
+        return false;
+     }
+ </script>
 </body>
 </html>
