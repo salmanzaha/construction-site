@@ -1,279 +1,193 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Projet Final - lecon 1 a 20</title>
-
-   <!-- Google Font (Leçon 10) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* Reset & variables */
-        *{box-sizing:border-box;margin:0;padding:0}
-        :root{
-            --accent:#0077ff; --muted:#666; --bg:#f7f8fb; --card:#ffffff;
-        }
-        body{font-family:"poppins";sans-serif;background: var(--bg);color:#222;line-height: 1.4;}
-        a{color:var(--accent);text-decoration: none;}
-
-        /* NAV (Leçon 14 - Flexbox) */
-        nav{display:flex;justify-content:space-between;align-items: center;padding: 18px 28px;background:#0d47a1;color: white;}
-        nav .logo{font-weight:700}
-        nav ul{display: flex;gap: 18px;list-style: none;}
-        nav a{color: white}
-
-        /* HEADER (Leçon 1,8) */
-        header{padding:60px 20px;text-align:center;background: linear-gradient(90deg,var(--accent),#005fcc);color: white;}
-        header h1{font-size:2rem;margin-bottom:8px;}
-        header p{opacity:.9}
-
-        /* LAYOUT: Grid container (Leçon 15) */
-        .container{max-width:1200px;margin:30px auto;padding:0 16px;display:grid;grid-template-columns:1fr 320px;gap:24px}
-
-        /* MAIN content */
-        main{background:linear-gradient(180deg,transparent,transparent)}
-
-        /* ABOUT (HTML content, lists - Leçon 2/3/4) */
-        .about{background: var(--card);padding:20px;border-radius: 12px;box-shadow: 0 6px 18px rgba(18,38,63,.06)}
-        .about h2{margin-bottom:10px}
-        .about ul{margin-left:18px;margin:8px}
-
-        /* SKILLS cards (Flexbox + Box-model - Leçon 11/14) */
-        .skills{display: flex;flex-wrap: wrap;gap: 12px;margin-top: 12px}
-        .skill{background: var(--card);padding: 12px 14px;border-radius:10px;border: 2px solid transparent;box-shadow: 0 6px 12px rgba(2,6,23,.04);flex:1 1 140px;text-align:center;transition:transform .25s,box-shadow .25s}
-        .skill:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(2,6,23,.08);border-color:var(--accent)}
-
-        /* PORTFOLIO (Grid - Leçon 15) */
-        .portfolio{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220ox,1fr));gap:18px}
-        .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 16px rgba(10,20,40,.06);display:flex;flex-direction:column;gap:10px;transition:transform .3s}
-        .card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
-        .card:hover{transform:translateY(-8px)}
-
-        /* FLIP QUIZ (Leçon 20 part1) */
-        .flip-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:18px}
-        .flip{perspective:1000px;width:300px;height:200px}
-        .flip .inner{width:100%;heigth:100%;position:relative;transform-style:preserve-3d;transition:transform .7s}
-        .flip:hover .inner{transform:rotateY(180deg)}
-        .face{position:absolute;inset:0;border-radius:12px;display:flex;align-items:cneter;justify-content:center;padding:16px;backface-visibility:hidden;box-shadow:0 10px020px rgba(2,6,23,.08)}
-        .face.front{background:linear-gradient(180deg,#fff,#f6f9ff);font-weight:600}
-        .face.back{background:var(--accent);color:white;transform:rotateY(180deg)}
-
-        /* ANIMATIONS CASCADE (Leçon 18) */
-        .cascade{display:flex;gap:12px;justify-content:center;margin-top:20px}
-        .pop{width:110px;height:110px;background:white;border-radius:12px;box-shadow:0 8px 20px rgba(2,6,23,.06);display:flex;align-items: center;justify-content:center;opacity:0;transform:scale(.6);animation:spin 6s linear infinite;transform-style:preserve-3d}
-        .pop:nth-child(1){animation-delay:.2} .pop:nth-child(2){animation-delay:.4s}.pop:nth-child(3){animation-delay:.6s}
-        @keyframes pop{to{opacity:1;transform: scale(1)}}
-
-        /* 3D continuous box (Leçon 20 part2) */
-        .spin-box{width:150px;height:150px;border-radius:12px;background:var(--card);display: flex;align-items:center;justify-content:center;margin:20px auto;box-shadow:0 10px 25px rgba(2,6,23,.06);animation:spin 6s linear infinite;transform-style: preserve-3d}
-        @keyframes spin{to{transform: rotateX(360deg) rotateY(360deg)}}
-
-        /* CUBE simple (Leçon 20 part3) */
-        .cube-wrap{perspective:900px;display:flex;justify-content: center;margin-top: 24px}
-        .cube{width:120px;height:120px;position:relative;transform-style:preserve-3d;animation:cube 6s linear infinite}
-        .cube .f{position:absolute;width:120px;height:120px;background:var(--card);display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid rgb(2,6,23,.05)}
-        .cube .front{transform:translateZ(60px)}.cube .back{transform:rotateY(180deg) translateZ(60px)}.cube .right{transform:rotateY(90deg) translateZ(60px)}.cube .left{transform:rotateY(-90deg) translateZ(60px)}.cube .top{transform:rotateX(90deg) translateZ(60px)}.cube .bottom{transform:rotateX(-90deg) translateZ(60px)}
-        @keyframes cube{to{transform:rotateX(360deg) rotateY(360deg)}}
-
-        /* CUBE simple (Leçon 20 part3) */
-        .cube-wrap{perspective:900px;display:flex;justify-content:center;margin-top:24px}
-        .cube{width:120px;height:120px;position:relative;transform-style:preserve-3d;animation: cube 6s linear infinite}
-        .cube .f{position:absolute;width:120px;height:120px;background:var(--card);display: flex;align-items:center;justify-content:center;justify-content:center;border-radius:8px;border:1px solid rgba(2,6,23,.05)}
-        .cube .front{transform:translateZ(60px)}.cube .back{transform:rotateY(180deg) translateZ(60px)}.cube .right{transform:rotateY(90deg) translateZ(60px)}.cube .left{transform:rotateY(-90deg) translateZ(60px)}.cube .top{transform:rotateX(90deg) translateZ(60px)}.cube .bottom{transform:rotateX(-90deg) translateZ(60px)}
-        @keyframes cube{to{transform:rotateX(360deg) rotateY(360deg)}}
-
-        /* CONTACT form (Leçon 7 forms, validation simple) */
-        aside .contact{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,.05)}
-        .contact label{display:block;margin-top:10px;font-size:.9rem;color:var(--muted)}
-        .contact input,.contact textarea{width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid #e6e9ef}
-        .contact button{margin-top:12px;padding:10px 14px;background:var(--accent);color:white;border:none;border-radius:8px;cursor: pointer}
-
-       /* Footer */
-       footer{margin-top:30px;padding:24px;text-align:center;color:var(--muted)}
+    <meta charset="UTF-8">
+    <title>portfolio | Salman Hassan</title>
     
-       /* Responsive (Leçon 17) */
-       @media (max-width:1000px){.container{grid-template-columns:1fr}.portfolio{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}}
-       @media (max-width:480px){nav ul{display:none}header h1{font-size:1.4rem}.flip{width:100%;height:auto}.flip .inner{min-height:180px}}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-       /* small helpers */
-       .muted{color:var(--muted);font-size:.95rem}
-       .center{text-align:center}
-    </style>
+    body {
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background: #1c1c1c;
+        color: white;
+    }
+
+    nav a {
+        color: white;
+        margin-left: 20px;
+        text-decoration: none;
+    }
+
+    .hero {
+        padding: 100px 20px;
+        text-align: center;
+        background: #f4f4f4;
+    }
+
+    .btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 25px;
+        background: #f9a825;
+        color: white;
+        text-decoration: none;
+    }
+
+    section {
+        padding: 60px 40px;
+    }
+
+    .project {
+        background: #eee;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .projects-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .project-card {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .project-card a {
+        display: inline-block;
+        margin-top: 15px;
+        color: #f9a825;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    footer {
+        background: #1c1c1c;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+
+        header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .projects-container {
+            grid-template-columns: 1fr;
+        }
+
+        .hero {
+            padding: 60px 20px;
+        }
+
+        section {
+            padding: 40px 20px;
+        }
+    }
+</style>
 </head>
+
 <body>
 
-   <!-- NAV (Flexbox) -->
+<header>
+    <h1>Salman Hassan</h1>
     <nav>
-        <div class="logo">SALMAN ZAHA - Portfolio</div>
-        <ul>
-            <li><a href="#about">A propos</a></li>
-            <li><a href="#work">Projets</a></li>
-            <li><a href="#quiz">Quiz</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav> 
+        <a href="#about">À propos</a>
+        <a href="#skills">Compétences</a>
+        <a href="#projects">Projets</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
 
-    <!-- HEADER -->
-     <header>
-        <h1>projet final</h1>
-        <p>Un mini-site démonstratif qui réunit Html, Css, Flexbox, Grid, Animation et 3D.</p>
-     </header>
-    <div class="container">
-        <main>
+<section class="hero">
+    <h2>Développeur Web Full-Stack</h2>
+    <p>je crée des sites web modernes et performants.</p>
+    <a href="#projects" class="btn">Voir mes projets</a>
+</section>
 
-           <!-- ABOUT (lists, titles) -->
-            <section id="about" class="about">
-                <h2>A propos</h2>
-                <p class="muted">Ce site montre des exemples de chaque leçon : structure Html, listes, images, liens, formulaires, CSS et plus.</p>
-                <h3>Mes loisirs</h3>
-                <ul>
-                    <li>Programmation (Html/CSS/JS)</li>
-                    <li>Design UI</li>
-                    <li>Lecture</li>
-                </ul>
+<section id="about">
+    <h2>À propos de moi</h2>
+    <p>
+        développeur web full-stack, passionné par le web et les nouvelles technologies.
+    </p>
+</section>
 
-                <h3>Objectifs</h3>
-                <ol>
-                    <li>Apprendre les fondamtaux</li>
-                    <li>Réaliser des projets</li>
-                    <li>Postuler / Freelance</li>
-                </ol>
+<section id="skills">
+    <h2>Compétences</h2>
+    <ul>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>Responsive Design</li>
+        <li>Git & GitHub</li>
+    </ul>
+</section>
 
-                <div class="skills">
-                <div class="skill">HTML</div>
-                <div class="skill">CSS</div>
-                <div class="skill">Flexbox</div>
-                <div class="skill">Grid</div>
-              </div>
-        </section>
+<section id="projects">
+    <h2>Mes projets</h2>
 
-            <!-- PORTFOLIO (Grid) -->
-             <section id="work">
-                <h2 class="center" style="margin-top:18px">Projets & competences</h2>
-                <div class="portfolio">
-                    <article class="card">
-                        <img src="https://picsum.photos/seed/p1/600/400" alt="Projet 1">
-                        <h4>Mini-portfolio</h4>
-                        <p class="muted">Flexbox + Grid + Animations.</p>
-                    </article>
-
-                    <article class="card">
-                        <img src="https://picsum.photos/seed/p2/600/400" alt="Projet 2">
-                        <h4>Galerie responsive</h4>
-                        <p class="muted">Grid auto-fit & media queries.</p>
-                    </article>
-
-                    <article class="card">
-                       <img src="https://picsum.photos/seed/p3/600/400" alt="Projet 3">
-                        <h4>Carte quiz 3D</h4>
-                        <p class="muted">Flip card, backface-visibility.</p>
-                    </article>
-
-                    <article class="card">
-                        <img src="https://picsum.photos/seed/p4/600/400" alt="Projet 4">
-                        <h4>Animation avancees</h4>
-                        <p class="muted">Transtions, keyframes, easing.</p>
-                    </article>
-                </div>
-
-                <!-- small animations showcases -->
-                 <div class="center" style="margin-top:18px">
-                    <div class="cascade">
-                        <div class="pop">A</div>
-                        <div class="pop">B</div>
-                        <div class="pop">C</div>
-                    </div>
-                 </div>
-             </section>
-
-             <!-- QUIZ (Flip cards - Leçon 20) -->
-              <section id="quiz" style="margin-top:26px">
-                <h2 class="center">Quiz rapide (survol pour voir la réponse)</h2>
-                <div class="flip-row">
-                 <div class="flip">
-                 <div class="inner">
-                    <div class="face front">Question 1:<br>Quel langage sert à structurer une page web ?</div>
-                    <div class="face back">HTML</div>
-                </div>
-                </div>
-
-                <div class="flip">
-                    <div class="inner">
-                        <div class="face front">Question 2:<br> Quelle propriété place un élément en Flexbox ?</div>
-                        <div class="face back">display: flex</div>
-                    </div>
-                </div>
-
-                <div class="flip">
-                    <div class="inner">
-                        <div class="face front">Question 3:<br> Quelle propriété crée une grille ?</div>
-                        <div class="face back">display: grid</div>
-                    </div>
-                </div>
-                </div>
-              </section>
-
-              <!-- 3D examples -->
-              <section style="margin-top:28px">
-                <h2 class="center">Exemples 3D</h2>
-                <div class="center">
-                    <div class="spin-box">3D</div>
-                </div>
-                <div class="cube-wrap">
-                    <div class="cube">
-                        <div class="f front">1</div>
-                        <div class="f back">2</div>
-                        <div class="f right">3</div>
-                        <div class="f left">4</div>
-                        <div class="f top">5</div>
-                        <div class="f bottom">6</div>
-                    </div>
-                </div>
-              </section>
-        </main>
-
-        <!-- ASIDE (Contact + Table example - Leçon 6 & 5) -->
-         <aside>
-            <div class="contact">
-                <h3>Contact</h3>
-                <form onsubmit="return handleSubmit(event)">
-                    <label for="name">Nom</label>
-                    <input id="name" name="name" required placeholder="Ton nom">
-
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" required placeholder="email@exemple.com">
-
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Écris ton message..."></textarea>
-
-                    <button type="submit">Envoyer</button>
-                </form>
-
-                <h4 style="margin-top:14px">Petite table</h4>
-                <table style="width:100%;border-collapse:collapse;margin-top:8px">
-                    <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Nom</th><th style="text-align:left;padding:8px;border-bottom:1px solid #eee">Âge</th></tr>
-                   <tr><td style="padding:8px">Salman</td><td style="padding:8px">25</td></tr>
-                   <tr><td style="padding:8px">rayan</td><td style="padding:8px">22</td></tr>
-                </table>
-            </div>
-         </aside>
+    <div class="project">
+        <h3>Site entreprise de construction</h3>
+        <p>HTML, CSS, Responsive</p>
+        <a href="#">Voir le projet</a>
     </div>
 
+    <div class="projects-container">
+        <div class="project-card">
+            <h3>Site entreprise de construction</h3>
+            <p>HTML . CSS . Responsive</p>
+            <a href="https://salmanzaha.github.io/construction-site/" target="_blank">Voir le site</a>
+        </div>
 
- <footer>
-    © 2025 - projet final
- </footer>
+        <div class="project-card">
+            <h3>Portfolio personnel</h3>
+            <p>HTML . CSS</p>
+            <a href="#">En cours</a>
+        </div>
+    </div>
+</section>
 
- <script>
-    // Simple form handler (no backend) — demonstrates JS interaction //
-     function handleSubmit(e){
-        e.preventDefault();
-        const name = document.getElementById('name').value || 'inconnu';
-        alert('Merci ' + name + ' ! (formulaire simule - sans envoi réel)');
-        e.target.reset();
-        return false;
-     }
- </script>
+<section id="contact">
+    <h2>Contact</h2>
+    <p>Email : salman@gmail.com</p>
+</section>
+
+<footer>
+    <p>© 2025 Salman Hassan</p>
+</footer>
 </body>
 </html>
+                       
