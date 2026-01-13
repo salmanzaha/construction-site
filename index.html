@@ -1,193 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+ <head>
     <meta charset="UTF-8">
-    <title>portfolio | Salman Hassan</title>
+    <title>Mon E-commerce</title>
+    <link rel="stylesheet" href="style.css">
+ </head>
+
+  <body>
     
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    <!--Header-->
+    <header>
+      <h1>ShopOnline</h1>
+      <nav>
+         <a href="#">Accueil</a>
+         <a href="#">Produits</a>
+         <a href="#">Contact</a>
+      </nav>
+    </header>
 
-    body {
-        font-family: Arial, sans-serif;
-        color: #333;
-    }
+    <!--Banniere-->
+    <section class="hero">
+      <h2>Bienvenue dans notre boutique</h2>
+      <p>Les meilleurs produits au meilleur prix</p>
+      <button>Acheter maintenant</button>
+    </section>
 
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 50px;
-        background: #1c1c1c;
-        color: white;
-    }
+    <!--produits-->
+    <section class="products">
+      <div class="product">
+        <img src="images/product.jpg" alt="produit">
+        <h3>Livre Digital</h3>
+        <p>Guide complet pour apprendre efficacement.</p>
+        <span>10 €</span>
+        <button>Ajouter au panier</button>
+      </div>
 
-    nav a {
-        color: white;
-        margin-left: 20px;
-        text-decoration: none;
-    }
+      <div class="product">
+         <img src="images/service design.jpg" alt="service">
+         <h3>Service Design</h3>
+         <p>Création de logo professionnel.</p>
+         <span>15 €</span>
+         <button>Commander</button>
+      </div>
+    </section>
 
-    .hero {
-        padding: 100px 20px;
-        text-align: center;
-        background: #f4f4f4;
-    }
-
-    .btn {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 12px 25px;
-        background: #f9a825;
-        color: white;
-        text-decoration: none;
-    }
-
-    section {
-        padding: 60px 40px;
-    }
-
-    .project {
-        background: #eee;
-        padding: 20px;
-        margin-top: 20px;
-    }
-
-    .projects-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-        margin-top: 40px;
-    }
-
-    .project-card {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        transition: transform 0.3s;
-    }
-
-    .project-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .project-card a {
-        display: inline-block;
-        margin-top: 15px;
-        color: #f9a825;
-        font-weight: bold;
-        text-decoration: none;
-    }
-
-    footer {
-        background: #1c1c1c;
-        color: white;
-        text-align: center;
-        padding: 20px;
-    }
-
-    @media (max-width: 768px) {
-
-        header {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        nav {
-            margin-top: 15px;
-        }
-
-        nav a {
-            display: block;
-            margin: 10px 0;
-        }
-
-        .projects-container {
-            grid-template-columns: 1fr;
-        }
-
-        .hero {
-            padding: 60px 20px;
-        }
-
-        section {
-            padding: 40px 20px;
-        }
-    }
-</style>
-</head>
-
-<body>
-
-<header>
-    <h1>Salman Hassan</h1>
-    <nav>
-        <a href="#about">À propos</a>
-        <a href="#skills">Compétences</a>
-        <a href="#projects">Projets</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
-
-<section class="hero">
-    <h2>Développeur Web Full-Stack</h2>
-    <p>je crée des sites web modernes et performants.</p>
-    <a href="#projects" class="btn">Voir mes projets</a>
-</section>
-
-<section id="about">
-    <h2>À propos de moi</h2>
-    <p>
-        développeur web full-stack, passionné par le web et les nouvelles technologies.
-    </p>
-</section>
-
-<section id="skills">
-    <h2>Compétences</h2>
-    <ul>
-        <li>HTML5</li>
-        <li>CSS3</li>
-        <li>Responsive Design</li>
-        <li>Git & GitHub</li>
-    </ul>
-</section>
-
-<section id="projects">
-    <h2>Mes projets</h2>
-
-    <div class="project">
-        <h3>Site entreprise de construction</h3>
-        <p>HTML, CSS, Responsive</p>
-        <a href="#">Voir le projet</a>
-    </div>
-
-    <div class="projects-container">
-        <div class="project-card">
-            <h3>Site entreprise de construction</h3>
-            <p>HTML . CSS . Responsive</p>
-            <a href="https://salmanzaha.github.io/construction-site/" target="_blank">Voir le site</a>
-        </div>
-
-        <div class="project-card">
-            <h3>Portfolio personnel</h3>
-            <p>HTML . CSS</p>
-            <a href="#">En cours</a>
-        </div>
-    </div>
-</section>
-
-<section id="contact">
-    <h2>Contact</h2>
-    <p>Email : salman@gmail.com</p>
-</section>
-
-<footer>
-    <p>© 2025 Salman Hassan</p>
-</footer>
-</body>
+    <!--footer-->
+    <footer>
+       <p>© 2026 ShopOnline - Tous droits réservés</p>
+    </footer>
+  </body>
 </html>
-                       
